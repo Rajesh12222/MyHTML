@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File A</title>
+</head>
+<body>
+
+<h1>File A</h1>
+
+<input type="text" id="dataToSend" placeholder="Enter data">
+<button onclick="sendData()">Send Data</button>
+
+<div id="receivedData">No data received.</div>
+
+<script>
+// Function to send data
+function sendData() {
+    var data = document.getElementById("dataToSend").value;
+    localStorage.setItem("myDataFromA", data);
+}
+
+// Function to check for data from File B
+function checkForDataFromB() {
+    var data = localStorage.getItem("myDataFromB");
+    if (data) {
+        document.getElementById("receivedData").innerText = "Received data from File B: " + data;
+    } else {
+        document.getElementById("receivedData").innerText = "No data received from File B.";
+    }
+}
+
+// Check for data from File B every 10 seconds
+setInterval(checkForDataFromB, 10000);
+</script>
+
+</body>
+</html>
